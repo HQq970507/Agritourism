@@ -1,0 +1,312 @@
+/* =====================================================
+   认领主线 - 共享设计令牌与基础样式（绿色农业风）
+   与现有 index / tree 页面风格统一：绿色系 + 白色卡片 + 圆角 + 轻阴影
+   设计令牌定义在 .adopt-page 根节点，子元素通过 var() 继承使用
+   ===================================================== */
+
+.adopt-page {
+  /* -------- 设计令牌 -------- */
+  --adopt-green: #4c8c3b;
+  --adopt-green-deep: #336b2a;
+  --adopt-green-mid: #5aa248;
+  --adopt-green-light: #8cc47a;
+  --adopt-teal: #35af86;
+  --adopt-gold: #eebc3d;
+  --adopt-bg: #f4f7f0;
+  --adopt-card: #ffffff;
+  --adopt-line: #e5eee0;
+  --adopt-text: #2c362c;
+  --adopt-text-sub: #7d8b7f;
+  --adopt-danger: #d9534f;
+  --adopt-radius: 24rpx;
+  --adopt-shadow: 0 10rpx 30rpx rgba(76, 140, 59, 0.1);
+  --adopt-grad: linear-gradient(135deg, #4c8c3b 0%, #35af86 100%);
+
+  width: 100%;
+  min-height: 100vh;
+  background: var(--adopt-bg);
+  box-sizing: border-box;
+  color: var(--adopt-text);
+  font-size: 28rpx;
+}
+
+/* -------- 顶部横幅 -------- */
+.adopt-hero {
+  position: relative;
+  margin: 24rpx 24rpx 0;
+  padding: 48rpx 40rpx;
+  border-radius: 28rpx;
+  background: var(--adopt-grad);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 16rpx 40rpx rgba(53, 175, 134, 0.25);
+}
+
+.adopt-hero::before,
+.adopt-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.adopt-hero::before {
+  right: -70rpx;
+  top: -70rpx;
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.adopt-hero::after {
+  right: 60rpx;
+  bottom: -110rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.adopt-hero-title {
+  position: relative;
+  z-index: 1;
+  font-size: 42rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.adopt-hero-sub {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 14rpx;
+  font-size: 26rpx;
+  opacity: 0.92;
+}
+
+.adopt-hero-tag {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin-top: 28rpx;
+  padding: 10rpx 26rpx;
+  font-size: 24rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* -------- 通用卡片 -------- */
+.adopt-card {
+  background: var(--adopt-card);
+  border-radius: var(--adopt-radius);
+  box-shadow: var(--adopt-shadow);
+  overflow: hidden;
+}
+
+/* -------- 区块标题 -------- */
+.adopt-section-title {
+  display: flex;
+  align-items: center;
+  margin: 40rpx 24rpx 24rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+}
+
+.adopt-section-title::before {
+  content: "";
+  width: 10rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+  border-radius: 6rpx;
+  background: var(--adopt-grad);
+}
+
+/* -------- 按钮 -------- */
+.adopt-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 88rpx;
+  border-radius: 999rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.adopt-btn:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+.adopt-btn-primary {
+  background: var(--adopt-grad);
+  color: #fff;
+  box-shadow: 0 10rpx 24rpx rgba(53, 175, 134, 0.3);
+}
+
+.adopt-btn-ghost {
+  background: var(--adopt-card);
+  color: var(--adopt-green);
+  border: 2rpx solid var(--adopt-green);
+}
+
+.adopt-btn-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* -------- 状态徽标 -------- */
+.adopt-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 20rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  line-height: 1.5;
+}
+
+.adopt-badge-green {
+  background: #e7f3e2;
+  color: var(--adopt-green);
+}
+
+.adopt-badge-teal {
+  background: #e0f4ee;
+  color: var(--adopt-teal);
+}
+
+.adopt-badge-gold {
+  background: #fdf3dc;
+  color: #b3862a;
+}
+
+.adopt-badge-gray {
+  background: #eef1ee;
+  color: var(--adopt-text-sub);
+}
+
+/* -------- 空态 -------- */
+.adopt-empty {
+  padding: 100rpx 0 140rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.adopt-empty-img {
+  width: 280rpx;
+  height: 200rpx;
+}
+
+.adopt-empty-text {
+  margin-top: 24rpx;
+  font-size: 28rpx;
+  color: var(--adopt-text-sub);
+}
+
+.adopt-empty-btn {
+  margin-top: 40rpx;
+  width: 320rpx;
+}
+
+/* -------- 加载 / 加载更多 -------- */
+.adopt-loading {
+  padding: 40rpx 0;
+  text-align: center;
+  color: var(--adopt-text-sub);
+  font-size: 26rpx;
+}
+
+/* -------- 底部占位（避开吸底按钮） -------- */
+.adopt-bottom-space {
+  width: 100%;
+  height: 200rpx;
+}
+
+/* -------- 表单（认领 / 写日记共用） -------- */
+.adopt-form {
+  margin: 24rpx;
+  padding: 8rpx 32rpx 32rpx;
+}
+
+.adopt-form-title {
+  padding: 28rpx 0 8rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.adopt-form-row {
+  padding: 26rpx 0;
+  border-bottom: 2rpx solid var(--adopt-line);
+}
+
+.adopt-form-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18rpx;
+  font-size: 28rpx;
+  color: var(--adopt-text);
+  font-weight: 600;
+}
+
+.adopt-form-label .required {
+  margin-left: 8rpx;
+  color: var(--adopt-danger);
+}
+
+.adopt-form-label .optional {
+  margin-left: 12rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  color: var(--adopt-text-sub);
+}
+
+.adopt-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 76rpx;
+  padding: 18rpx 24rpx;
+  font-size: 28rpx;
+  color: var(--adopt-text);
+  background: #f6f9f4;
+  border: 2rpx solid var(--adopt-line);
+  border-radius: 16rpx;
+}
+
+.adopt-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 180rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: var(--adopt-text);
+  background: #f6f9f4;
+  border: 2rpx solid var(--adopt-line);
+  border-radius: 16rpx;
+}
+
+.adopt-picker {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 76rpx;
+  padding: 18rpx 24rpx;
+  background: #f6f9f4;
+  border: 2rpx solid var(--adopt-line);
+  border-radius: 16rpx;
+}
+
+.adopt-picker-placeholder {
+  color: #a8b4a9;
+  font-size: 28rpx;
+}
+
+.adopt-picker-arrow {
+  color: var(--adopt-text-sub);
+  font-size: 30rpx;
+}
+
+.adopt-form-submit {
+  margin: 48rpx 24rpx 0;
+}

@@ -1,0 +1,390 @@
+.page {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background: #102f2f;
+  color: #f5f9f9;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.bg-img {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  object-fit: cover;
+}
+
+/* 个人中心 */
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background-color: white;
+  border-radius: 15px;
+  width: fit-content;
+}
+
+.user-img {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.user text {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+/*树林信息*/
+.tree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  padding-top: 36rpx;
+  padding-bottom: 32rpx;
+  border-radius: 24rpx 24rpx 0 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border: 2rpx solid rgba(255, 255, 255, 0.14);
+  border-bottom: none;
+  box-shadow: 0 12rpx 36rpx rgba(6, 24, 24, 0.35);
+  margin-top: 75%;
+}
+
+.tree-top {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main text {
+  color: #bfe0de;
+  font-weight: 700;
+}
+
+.sb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sb image {
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 20rpx;
+}
+
+.dada {
+  font-size: 22px;
+  color: #e8c96a;
+}
+
+.tree-btn {
+  text-align: center;
+  padding: 30rpx;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border: 2rpx solid rgba(255, 255, 255, 0.14);
+  border-top: 2rpx solid rgba(255, 255, 255, 0.1);
+  color: #f5f9f9;
+  border-bottom-right-radius: 24rpx;
+  border-bottom-left-radius: 24rpx;
+}
+
+/* 按钮 */
+.btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 180rpx;
+  position: relative;
+}
+
+.zs-btn {
+  position: relative;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 30rpx;
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+  background: linear-gradient(135deg, rgba(47, 143, 143, 0.5), rgba(26, 92, 92, 0.6));
+  backdrop-filter: blur(20rpx);
+  -webkit-backdrop-filter: blur(20rpx);
+  border: 2rpx solid rgba(95, 180, 180, 0.5);
+  border-radius: 999px;
+  color: #f5f9f9;
+  box-shadow: 0 12rpx 32rpx rgba(6, 24, 24, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.zs-btn:last-child {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.42), rgba(148, 118, 36, 0.45));
+  border-color: rgba(212, 175, 55, 0.5);
+}
+
+.zs-btn:active {
+  transform: scale(0.95);
+}
+
+.zs-btn image {
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: -12px;
+  left: 40px;
+}
+
+/* 领养勋章 */
+.xunzang-box {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(8, 28, 28, 0.6);
+  animation: fadeIn 3s ease-in-out forwards;
+  z-index: 9999;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.xunzang {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  height: fit-content;
+  width: 480rpx;
+  background: -webkit-linear-gradient(183deg, #ffecd4 0%, #fdf8ec 100%),
+    -webkit-linear-gradient(90deg, #fff1eb 0%, #ace0f9 100%);
+  border-radius: 8px;
+  animation: rotateZ 3s ease-in-out forwards;
+}
+
+@keyframes rotateZ {
+  0% {
+    transform: translate(-50%, -50%) rotateY(0deg) scale(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotateY(360deg) scale(1);
+    opacity: 1;
+  }
+}
+
+.xunzhang-main {
+  padding: 30rpx;
+}
+
+.xz-title {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20rpx;
+  color: #946031;
+}
+
+.xz-img {
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.xz-img image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8px;
+}
+
+.xz-p {
+  color: #ab8763;
+  font-size: 14px;
+  line-height: 45rpx;
+  letter-spacing: 2px;
+  margin-bottom: 20rpx;
+}
+
+.info {
+  margin-bottom: 20rpx;
+}
+
+.infoitem {
+  margin-bottom: 20rpx;
+}
+
+.infoitem text {
+  color: #7b4610;
+  font-size: 12px;
+}
+
+.tbg {
+  background-color: #ffecd5;
+  padding: 6rpx 15rpx;
+}
+
+.konw {
+  width: 100%;
+  text-align: center;
+  background: -webkit-linear-gradient(89deg, #fec45e 0%, #feee96 100%),
+    -webkit-linear-gradient(90deg, #fff1eb 0%, #ace0f9 100%);
+  color: #906334;
+  font-weight: 700;
+  padding: 20rpx 0;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.ai-btn {
+  position: absolute;
+  left: 10rpx;
+  top: 35%;
+}
+
+.ai-btn image {
+  width: 95rpx;
+  height: 95rpx;
+  border-radius: 100%;
+}
+
+/* 能量气泡样式 */
+.energy-bubbles {
+  position: relative;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bubble-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.bubble {
+  position: relative;
+  background: linear-gradient(145deg, rgba(95, 180, 180, 0.55), rgba(26, 92, 92, 0.65));
+  border: 2rpx solid rgba(232, 201, 106, 0.55);
+  border-radius: 50%;
+  backdrop-filter: blur(12rpx);
+  -webkit-backdrop-filter: blur(12rpx);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10rpx 30rpx rgba(6, 24, 24, 0.4), inset 0 0 24rpx rgba(95, 180, 180, 0.22);
+  pointer-events: auto;
+  width: 115rpx;
+  height: 115rpx;
+}
+
+.onefloat {
+  animation: onefloat 1s ease-in-out infinite alternate;
+}
+
+.twofloat {
+  animation: twofloat 1s ease-in-out infinite alternate;
+}
+
+/* 奇数 */
+@keyframes onefloat {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-25rpx);
+  }
+}
+
+/* 偶数 */
+@keyframes twofloat {
+  0% {
+    transform: translateY(-25rpx);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bubble:active {
+  transform: scale(0.9);
+}
+
+.value {
+  color: #f7e7b4;
+  font-weight: bold;
+  font-size: 25rpx;
+  text-shadow: 1rpx 1rpx 2rpx rgba(6, 24, 24, 0.5);
+}
+
+/* 添加微小光点效果 */
+.bubble::after {
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 20%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  top: 15%;
+  left: 25%;
+  transform: rotate(45deg);
+}
+
+@keyframes collect {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.5);
+  }
+}
+
+.bubble.collecting {
+  animation: collect 1s ease-in-out forwards;
+}
+
+/* 微调每个气泡位置 */
+/* .bubble:nth-child(1) {
+  top: 30rpx;
+}
+
+.bubble:nth-child(2) {
+  top: 15rpx;
+}
+
+.bubble:nth-child(3) {
+  top: 0rpx;
+}
+
+.bubble:nth-child(4) {
+  top: 15rpx;
+}
+
+.bubble:nth-child(5) {
+  top: 30rpx;
+} */

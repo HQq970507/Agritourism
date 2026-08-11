@@ -1,0 +1,608 @@
+/* =====================================================
+   旅程主线 - 共享样式（绿色农业风）
+   依赖 adoption.css 的设计令牌（--adopt-*）：
+   旅程页统一以 .adopt-page 为根节点，再在此文件补充
+   Tab 切换 / 旅程卡片 / 站点时间轴 / 类型徽标 /
+   偏好 chip / AI 结果块 / 调整按钮 / 底部吸底 / 预约弹层
+   ===================================================== */
+
+/* -------- Tab 切换 -------- */
+.journey-tabs {
+  display: flex;
+  margin: 24rpx 24rpx 0;
+  padding: 8rpx;
+  background: #eaf1e4;
+  border-radius: 999rpx;
+}
+
+.journey-tab {
+  flex: 1;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--adopt-text-sub);
+  transition: all 0.25s ease;
+}
+
+.journey-tab.active {
+  background: var(--adopt-card);
+  color: var(--adopt-green-deep);
+  box-shadow: 0 6rpx 16rpx rgba(76, 140, 59, 0.18);
+}
+
+/* -------- 旅程卡片（列表） -------- */
+.journey-card {
+  margin: 24rpx 24rpx 0;
+}
+
+.journey-card-cover {
+  position: relative;
+  width: 100%;
+  height: 280rpx;
+  overflow: hidden;
+}
+
+.journey-card-cover-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.journey-card-grad {
+  background: linear-gradient(135deg, #6fae57 0%, #35af86 60%, #2d9d74 100%);
+}
+
+.journey-card-cover-img {
+  width: 100%;
+  height: 100%;
+}
+
+.journey-cover-emoji {
+  font-size: 96rpx;
+  opacity: 0.9;
+}
+
+.journey-duration-pill {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  padding: 8rpx 22rpx;
+  border-radius: 999rpx;
+  background: rgba(44, 54, 44, 0.55);
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: 600;
+  backdrop-filter: blur(4rpx);
+}
+
+.journey-card-body {
+  padding: 24rpx 26rpx 26rpx;
+}
+
+.journey-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.journey-card-name {
+  flex: 1;
+  min-width: 0;
+  margin-right: 16rpx;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.journey-card-meta {
+  display: flex;
+  align-items: center;
+  margin-top: 18rpx;
+}
+
+.journey-card-meta-item {
+  margin-right: 24rpx;
+  font-size: 22rpx;
+  color: var(--adopt-teal);
+}
+
+.journey-card-desc {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: var(--adopt-text-sub);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* -------- 详情信息卡 -------- */
+.journey-info {
+  margin: 0 24rpx;
+  padding: 12rpx 32rpx;
+}
+
+.journey-info-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid var(--adopt-line);
+}
+
+.journey-info-row:last-child {
+  border-bottom: none;
+}
+
+.journey-info-label {
+  width: 160rpx;
+  flex-shrink: 0;
+  font-size: 26rpx;
+  color: var(--adopt-text-sub);
+}
+
+.journey-info-value {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--adopt-text);
+  word-break: break-all;
+}
+
+/* -------- 站点时间轴（左侧时间，右侧内容） -------- */
+.journey-tl {
+  padding: 8rpx 24rpx 16rpx;
+}
+
+.journey-tl-item {
+  display: flex;
+  align-items: stretch;
+}
+
+.journey-tl-time {
+  width: 110rpx;
+  flex-shrink: 0;
+  padding: 24rpx 16rpx 0 0;
+  text-align: right;
+  font-size: 22rpx;
+  line-height: 1.4;
+  color: var(--adopt-text-sub);
+}
+
+.journey-tl-rail {
+  position: relative;
+  width: 56rpx;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.journey-tl-rail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4rpx;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    180deg,
+    rgba(76, 140, 59, 0.3),
+    rgba(53, 175, 134, 0.3)
+  );
+}
+
+.journey-tl-item:last-child .journey-tl-rail::before {
+  bottom: auto;
+  height: 28rpx;
+}
+
+.journey-tl-dot {
+  position: relative;
+  z-index: 1;
+  margin-top: 26rpx;
+  width: 22rpx;
+  height: 22rpx;
+  border-radius: 50%;
+  background: var(--adopt-green-mid);
+  border: 6rpx solid #fff;
+  box-shadow: 0 0 0 4rpx rgba(76, 140, 59, 0.18);
+}
+
+.journey-tl-content {
+  flex: 1;
+  min-width: 0;
+  margin: 0 0 24rpx;
+  padding: 24rpx 26rpx;
+  background: var(--adopt-card);
+  border-radius: 20rpx;
+  box-shadow: var(--adopt-shadow);
+}
+
+.journey-stop-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.journey-stop-name {
+  flex: 1;
+  min-width: 0;
+  margin-right: 16rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+}
+
+.journey-stop-meta {
+  display: flex;
+  align-items: center;
+  margin-top: 14rpx;
+}
+
+.journey-stop-meta-item {
+  margin-right: 24rpx;
+  font-size: 22rpx;
+  color: var(--adopt-teal);
+}
+
+.journey-stop-desc {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--adopt-text);
+}
+
+.journey-stop-loc {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: var(--adopt-text-sub);
+}
+
+/* -------- 站点类型徽标 -------- */
+.journey-type-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 20rpx;
+  flex-shrink: 0;
+}
+
+.journey-type-green {
+  background: #e7f3e2;
+  color: #4c8c3b;
+}
+
+.journey-type-orange {
+  background: #fdf0e0;
+  color: #d9822b;
+}
+
+.journey-type-blue {
+  background: #e6f0fb;
+  color: #3d6fc0;
+}
+
+.journey-type-purple {
+  background: #f1e9fb;
+  color: #8a5ac9;
+}
+
+.journey-type-cyan {
+  background: #e0f6f4;
+  color: #159a8f;
+}
+
+.journey-type-yellow {
+  background: #fdf5d8;
+  color: #b3862a;
+}
+
+/* -------- 偏好 chip（多选） -------- */
+.journey-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-top: 18rpx;
+}
+
+.journey-chip {
+  padding: 14rpx 30rpx;
+  border-radius: 999rpx;
+  background: #f0f5ec;
+  border: 2rpx solid transparent;
+  font-size: 26rpx;
+  color: var(--adopt-text-sub);
+  transition: all 0.2s ease;
+}
+
+.journey-chip.active {
+  background: #e7f3e2;
+  border-color: var(--adopt-green-light);
+  color: var(--adopt-green-deep);
+  font-weight: 600;
+}
+
+/* -------- AI 结果块 -------- */
+.journey-ai-notice {
+  margin: 0 24rpx 24rpx;
+  padding: 24rpx 28rpx;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--adopt-green-deep);
+  background: #f0f8ec;
+  border-left: 8rpx solid var(--adopt-green-mid);
+  border-radius: 12rpx;
+}
+
+.journey-ai-title {
+  display: flex;
+  align-items: center;
+  margin: 36rpx 24rpx 20rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+}
+
+.journey-ai-title::before {
+  content: "";
+  width: 10rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+  border-radius: 6rpx;
+  background: var(--adopt-grad);
+}
+
+.journey-ai-card {
+  margin: 0 24rpx 24rpx;
+  padding: 8rpx 28rpx;
+  background: var(--adopt-card);
+  border-radius: 20rpx;
+  box-shadow: var(--adopt-shadow);
+}
+
+.journey-ai-item {
+  display: flex;
+  align-items: center;
+  padding: 22rpx 0;
+  border-bottom: 2rpx solid var(--adopt-line);
+}
+
+.journey-ai-item:last-child {
+  border-bottom: none;
+}
+
+.journey-ai-item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.journey-ai-item-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--adopt-text);
+}
+
+.journey-ai-item-sub {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: var(--adopt-text-sub);
+}
+
+.journey-ai-item-extra {
+  margin-left: 20rpx;
+  font-size: 22rpx;
+  color: var(--adopt-text-sub);
+  flex-shrink: 0;
+}
+
+.journey-ai-price {
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  color: var(--adopt-green-deep);
+  flex-shrink: 0;
+}
+
+.journey-tips-list {
+  margin: 0 24rpx 24rpx;
+  padding: 10rpx 30rpx 30rpx;
+  background: var(--adopt-card);
+  border-radius: 20rpx;
+  box-shadow: var(--adopt-shadow);
+}
+
+.journey-tips-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 18rpx 0;
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: var(--adopt-text);
+}
+
+.journey-tips-item::before {
+  content: "✦";
+  margin: 4rpx 16rpx 0 0;
+  color: var(--adopt-green-mid);
+  font-size: 20rpx;
+  flex-shrink: 0;
+}
+
+/* -------- 调整页站点 -------- */
+.journey-adjust-item {
+  display: flex;
+  align-items: center;
+  margin: 0 24rpx 24rpx;
+  padding: 24rpx 26rpx;
+}
+
+.journey-adjust-index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 16rpx;
+  background: var(--adopt-grad);
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.journey-adjust-info {
+  flex: 1;
+  min-width: 0;
+  margin: 0 24rpx;
+}
+
+.journey-adjust-name {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.journey-adjust-sub {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--adopt-text-sub);
+}
+
+.journey-adjust-ops {
+  display: flex;
+  align-items: center;
+  gap: 14rpx;
+  flex-shrink: 0;
+}
+
+/* -------- 调整小按钮 -------- */
+.journey-mini-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64rpx;
+  height: 52rpx;
+  padding: 0 16rpx;
+  border-radius: 14rpx;
+  font-size: 24rpx;
+  background: #f0f5ec;
+  color: var(--adopt-text-sub);
+}
+
+.journey-mini-btn:active {
+  opacity: 0.7;
+}
+
+.journey-mini-btn.danger {
+  background: #fdf0ee;
+  color: var(--adopt-danger);
+}
+
+/* -------- 底部吸底操作栏 -------- */
+.journey-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 24rpx calc(20rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -6rpx 24rpx rgba(76, 140, 59, 0.08);
+}
+
+.journey-footer .adopt-btn {
+  flex: 1;
+}
+
+/* -------- 预约弹层 -------- */
+.journey-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(44, 54, 44, 0.5);
+}
+
+.journey-sheet {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40rpx 32rpx calc(32rpx + env(safe-area-inset-bottom));
+  background: var(--adopt-card);
+  border-radius: 32rpx 32rpx 0 0;
+}
+
+.journey-sheet-title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+  text-align: center;
+}
+
+.journey-sheet-field {
+  margin-top: 30rpx;
+}
+
+.journey-sheet-label {
+  display: block;
+  margin-bottom: 12rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--adopt-text);
+}
+
+.journey-sheet-input {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 76rpx;
+  padding: 18rpx 24rpx;
+  font-size: 28rpx;
+  color: var(--adopt-text);
+  background: #f6f9f4;
+  border: 2rpx solid var(--adopt-line);
+  border-radius: 16rpx;
+}
+
+.journey-sheet-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 40rpx;
+}
+
+.journey-sheet-actions .adopt-btn {
+  flex: 1;
+}
+
+/* -------- 时间线空态 -------- */
+.journey-tl-empty {
+  margin: 0 24rpx;
+  padding: 60rpx 0;
+  display: flex;
+  justify-content: center;
+  font-size: 26rpx;
+  color: var(--adopt-text-sub);
+}

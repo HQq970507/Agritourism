@@ -1,0 +1,143 @@
+{
+  "pages": [
+    {
+      "path": "pages/user/login/login"
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/tree/TreeFrom/TreeFrom",
+      "style": {
+        "navigationBarTitleText": "提交领养"
+      }
+    },
+    {
+      "path": "pages/user/register/register"
+    },
+    {
+      "path": "pages/user/center/center"
+    },
+    {
+      "path": "pages/tree/TreeList/TreeList"
+    },
+    {
+      "path": "pages/tree/TreeDetail/TreeDetail"
+    },
+    {
+      "path": "pages/user/UpdateInfo/UpdateInfo"
+    },
+    {
+      "path": "pages/user/UserList/UserList"
+    },
+    {
+      "path": "pages/user/UserDeail/UserDeail"
+    },
+    {
+      "path": "pages/ai/index"
+    },
+    {
+      "path": "pages/forum/index"
+    },
+    {
+      "path": "pages/forum/forumDetail/index"
+    },
+    {
+      "path": "pages/forum/addForum/index"
+    },
+    {
+      "path": "pages/synergism/index"
+    },
+    {
+      "path": "pages/webview/index",
+      "style": {
+        "navigationBarTitleText": "正在前往..."
+      }
+    },
+    {
+      "path": "pages/user/activity/index"
+    },
+    {
+      "path": "pages/user/collection/index"
+    },
+    {
+      "path": "pages/adoption/AdoptionList/AdoptionList",
+      "style": {
+        "navigationBarTitleText": "认领农产品"
+      }
+    },
+    {
+      "path": "pages/adoption/AdoptionForm/AdoptionForm",
+      "style": {
+        "navigationBarTitleText": "填写认领信息"
+      }
+    },
+    {
+      "path": "pages/adoption/MyAdoption/MyAdoption",
+      "style": {
+        "navigationBarTitleText": "我的认领"
+      }
+    },
+    {
+      "path": "pages/adoption/AdoptionDetail/AdoptionDetail",
+      "style": {
+        "navigationBarTitleText": "认领详情"
+      }
+    },
+    {
+      "path": "pages/adoption/AdoptionDiary/AdoptionDiary",
+      "style": {
+        "navigationBarTitleText": "写生长日记"
+      }
+    },
+    {
+      "path": "pages/journey/JourneyList/JourneyList",
+      "style": {
+        "navigationBarTitleText": "智慧旅程"
+      }
+    },
+    {
+      "path": "pages/journey/JourneyDetail/JourneyDetail",
+      "style": {
+        "navigationBarTitleText": "旅程详情"
+      }
+    },
+    {
+      "path": "pages/journey/JourneyAI/JourneyAI",
+      "style": {
+        "navigationBarTitleText": "AI 生成旅程"
+      }
+    },
+    {
+      "path": "pages/journey/JourneyAdjust/JourneyAdjust",
+      "style": {
+        "navigationBarTitleText": "调整旅程"
+      }
+    },
+    {
+      "path": "pages/farm/FarmMap/FarmMap",
+      "style": {
+        "navigationBarTitleText": "采摘园地图"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "app-plus": {
+      "background": "#efeff4"
+    }
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  }
+}

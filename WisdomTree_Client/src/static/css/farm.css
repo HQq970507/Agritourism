@@ -1,0 +1,514 @@
+/* =====================================================
+   采摘园地图 - 共享样式（绿色农业风）
+   依赖 adoption.css 的设计令牌（--adopt-*）：
+   地图页以 .adopt-page 为根节点，再在此文件补充
+   地图画布 / 城市标注 / 设施标记 / 底部筛选 chips /
+   详情卡片 / 空态 / 图例
+   ===================================================== */
+
+.farm-map-page {
+  padding-bottom: 180rpx; /* 避开底部吸底 chips */
+}
+
+/* -------- 顶部横幅 -------- */
+.farm-map-hero {
+  position: relative;
+  margin: 24rpx 24rpx 0;
+  padding: 40rpx 36rpx;
+  border-radius: 28rpx;
+  background: var(--adopt-grad);
+  color: #fff;
+  overflow: hidden;
+  box-shadow: 0 16rpx 40rpx rgba(53, 175, 134, 0.25);
+}
+
+.farm-map-hero::before,
+.farm-map-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.farm-map-hero::before {
+  right: -60rpx;
+  top: -80rpx;
+  width: 260rpx;
+  height: 260rpx;
+}
+
+.farm-map-hero::after {
+  right: 130rpx;
+  bottom: -90rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.farm-map-hero-title {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: 42rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+}
+
+.farm-map-hero-sub {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 14rpx;
+  font-size: 25rpx;
+  opacity: 0.92;
+}
+
+/* -------- 地图画布 -------- */
+.farm-map-body {
+  margin: 24rpx 24rpx 0;
+}
+
+.farm-map-canvas {
+  position: relative;
+  width: 660rpx;
+  height: 811rpx; /* 与真实经纬跨度比例一致（660 / (107.66-104.29)/(39.38-35.24) ≈ 811） */
+  margin: 0 auto;
+  border-radius: 28rpx;
+  overflow: hidden;
+  background: radial-gradient(rgba(76, 140, 59, 0.16) 3rpx, transparent 4rpx)
+      0 0 / 36rpx 36rpx,
+    linear-gradient(180deg, #f1f8ea 0%, #e2f0d9 100%);
+  box-shadow: inset 0 0 60rpx rgba(76, 140, 59, 0.1),
+    0 10rpx 30rpx rgba(76, 140, 59, 0.12);
+}
+
+/* -------- 小程序端降级：设施列表模式 -------- */
+.farm-map-list {
+  padding: 4rpx 4rpx 8rpx;
+}
+
+.farm-map-list-card {
+  margin-bottom: 20rpx;
+  padding: 26rpx 28rpx;
+  background: var(--adopt-card);
+  border-radius: 22rpx;
+  box-shadow: 0 8rpx 24rpx rgba(76, 140, 59, 0.1);
+}
+
+.farm-map-list-card:active {
+  background: #f6faf3;
+}
+
+.farm-map-list-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.farm-map-list-card-name {
+  flex: 1;
+  min-width: 0;
+  margin-right: 16rpx;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.farm-map-list-card-rows {
+  margin-top: 20rpx;
+  padding: 8rpx 20rpx;
+  background: #f6f9f4;
+  border-radius: 16rpx;
+}
+
+.farm-map-list-card-row {
+  display: flex;
+  align-items: center;
+  padding: 14rpx 0;
+  border-bottom: 2rpx solid var(--adopt-line);
+  font-size: 24rpx;
+}
+
+.farm-map-list-card-row:last-child {
+  border-bottom: none;
+}
+
+.farm-map-list-card-row .label {
+  width: 160rpx;
+  flex-shrink: 0;
+  color: var(--adopt-text-sub);
+}
+
+.farm-map-list-card-row .value {
+  flex: 1;
+  color: var(--adopt-text);
+  word-break: break-all;
+}
+
+.farm-map-list-empty {
+  padding: 120rpx 0 80rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.farm-map-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 可缩放/平移内容层：绝对撑满画布，城市标注与设施标记随层缩放 */
+.farm-map-scalable {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  z-index: 1;
+}
+
+/* 缩放控件（右下角，固定于画布不随缩放） */
+.farm-map-zoom-ctrl {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  z-index: 10;
+}
+
+.farm-map-zoom-btn {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #bfe5e0;
+  background: rgba(10, 32, 32, 0.72);
+  backdrop-filter: blur(12rpx);
+  -webkit-backdrop-filter: blur(12rpx);
+  border: 2rpx solid rgba(95, 180, 180, 0.45);
+  box-shadow: 0 6rpx 16rpx rgba(6, 24, 24, 0.4);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.farm-map-zoom-btn:active {
+  background: rgba(47, 143, 143, 0.6);
+}
+
+.farm-map-zoom-reset {
+  font-size: 32rpx;
+}
+
+/* 拖拽提示（缩放后显示） */
+.farm-map-drag-hint {
+  position: absolute;
+  top: 16rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8rpx 24rpx;
+  border-radius: 999rpx;
+  font-size: 22rpx;
+  color: rgba(245, 249, 249, 0.85);
+  background: rgba(8, 28, 28, 0.72);
+  backdrop-filter: blur(12rpx);
+  -webkit-backdrop-filter: blur(12rpx);
+  border: 2rpx solid rgba(95, 180, 180, 0.4);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* 地图画布：拖拽光标（可抓取） */
+.farm-map-canvas {
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.farm-map-canvas.dragging {
+  cursor: grabbing;
+}
+
+/* 五市真实边界：分市填充 + 白色细缝区分市界 */
+.farm-map-region {
+  stroke: #ffffff;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+/* 省界/市界描边（叠在白色细缝上，边界清晰） */
+.farm-map-outline {
+  fill: none;
+  stroke: #4c8c3b;
+  stroke-width: 1.1;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+/* -------- 城市标注 -------- */
+.farm-map-city {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.farm-map-city-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #fff;
+  border: 4rpx solid var(--adopt-green);
+  box-shadow: 0 0 0 4rpx rgba(76, 140, 59, 0.16);
+}
+
+.farm-map-city-name {
+  margin-top: 8rpx;
+  padding: 2rpx 12rpx;
+  border-radius: 8rpx;
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 20rpx;
+  color: var(--adopt-green-deep);
+  font-weight: 600;
+}
+
+/* -------- 设施标记（文旅部风格小点，无动画不散开） -------- */
+.farm-map-marker {
+  position: absolute;
+  width: 18rpx;
+  height: 18rpx;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.farm-map-marker-dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  border: 2rpx solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1rpx 4rpx rgba(6, 24, 24, 0.35);
+}
+
+.farm-map-marker.active .farm-map-marker-dot {
+  width: 14rpx;
+  height: 14rpx;
+}
+
+/* -------- 空态（地图无数据时覆盖在画布中央） -------- */
+.farm-map-empty {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(244, 247, 240, 0.72);
+  backdrop-filter: blur(4rpx);
+}
+
+.farm-map-empty-emoji {
+  font-size: 88rpx;
+}
+
+.farm-map-empty-text {
+  margin-top: 20rpx;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--adopt-text-sub);
+  text-align: center;
+}
+
+.farm-map-empty-btn {
+  margin-top: 32rpx;
+  width: 280rpx;
+}
+
+/* -------- 图例 -------- */
+.farm-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24rpx;
+  margin: 20rpx 0 0;
+  padding: 18rpx 0;
+}
+
+.farm-map-legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+  color: var(--adopt-text-sub);
+}
+
+.farm-map-legend-dot {
+  width: 18rpx;
+  height: 18rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+/* -------- 底部筛选 chips（吸底） -------- */
+.farm-map-chips {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  gap: 16rpx;
+  padding: 20rpx 24rpx calc(20rpx + env(safe-area-inset-bottom));
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -6rpx 24rpx rgba(76, 140, 59, 0.08);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.farm-map-chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 14rpx 28rpx;
+  border-radius: 999rpx;
+  background: #eef3eb;
+  font-size: 26rpx;
+  color: var(--adopt-text-sub);
+  transition: all 0.2s ease;
+}
+
+.farm-map-chip.active {
+  background: var(--adopt-grad);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 8rpx 20rpx rgba(53, 175, 134, 0.3);
+}
+
+.farm-map-chip-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.farm-map-chip-count {
+  margin-left: 6rpx;
+  font-size: 20rpx;
+  opacity: 0.75;
+}
+
+/* -------- 设施详情卡片（底部抽屉） -------- */
+.farm-map-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  background: rgba(44, 54, 44, 0.45);
+}
+
+.farm-map-sheet {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 36rpx 32rpx calc(32rpx + env(safe-area-inset-bottom));
+  background: var(--adopt-card);
+  border-radius: 32rpx 32rpx 0 0;
+  box-shadow: 0 -10rpx 40rpx rgba(44, 54, 44, 0.18);
+}
+
+.farm-map-sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.farm-map-sheet-name-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.farm-map-sheet-name {
+  max-width: 460rpx;
+  margin-right: 16rpx;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: var(--adopt-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.farm-map-sheet-close {
+  padding: 4rpx 8rpx;
+  font-size: 34rpx;
+  color: #9aa89c;
+}
+
+.farm-map-sheet-rows {
+  margin-top: 26rpx;
+  padding: 8rpx 26rpx;
+  background: #f6f9f4;
+  border-radius: 18rpx;
+}
+
+.farm-map-sheet-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid var(--adopt-line);
+}
+
+.farm-map-sheet-row:last-child {
+  border-bottom: none;
+}
+
+.farm-map-sheet-row .label {
+  width: 170rpx;
+  flex-shrink: 0;
+  font-size: 24rpx;
+  color: var(--adopt-text-sub);
+}
+
+.farm-map-sheet-row .value {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--adopt-text);
+  word-break: break-all;
+}
+
+.farm-map-sheet-row .value.link {
+  color: var(--adopt-green);
+  font-weight: 600;
+}
+
+.farm-map-sheet-desc {
+  display: block;
+  margin-top: 26rpx;
+  padding: 22rpx 26rpx;
+  background: #f6f9f4;
+  border-radius: 18rpx;
+  font-size: 26rpx;
+  line-height: 1.7;
+  color: var(--adopt-text);
+}
