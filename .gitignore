@@ -1,0 +1,58 @@
+# compiled output
+/dist
+node_modules/
+/build
+/dist/
+
+# uni-app 编译产物（src 内嵌 dist）
+/src/dist/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# 数据库导出（含用户个人信息，勿上传）
+*.sql
+*.sql.gz
+
+# other
+小程序树种logo
+images
+小程序树种logo
+小程序数据.xlsx
+WisdomTreeBS
