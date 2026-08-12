@@ -6,6 +6,30 @@
 
 ---
 
+## 📸 界面预览
+
+![登录页](docs/screenshots/01-login.png)
+
+![首页](docs/screenshots/02-home.png)
+
+![认领列表](docs/screenshots/03-adoption.png)
+
+![智慧旅程](docs/screenshots/04-journey.png)
+
+![采摘园地图](docs/screenshots/05-farm-map.png)
+
+![论坛](docs/screenshots/06-forum.png)
+
+![个人中心](docs/screenshots/07-center.png)
+
+![树木列表](docs/screenshots/08-tree-list.png)
+
+![协同](docs/screenshots/09-synergism.png)
+
+![AI识别](docs/screenshots/10-ai.png)
+
+---
+
 ## 🏗️ 项目结构
 
 | 目录 | 说明 | 技术栈 |
